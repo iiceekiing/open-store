@@ -1,0 +1,210 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Vendor",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Vendor(BaseModel):\n    name: str\nclass VendorCreate(Vendor):\n    market_location: str\n    phone: str\nclass VendorInDatabase(VendorCreate):\n    created_at: datetime\n    updated_at: datetime\nclass VendorsResponse(Vendor):\n    created_at: datetime",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "VendorCreate",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class VendorCreate(Vendor):\n    market_location: str\n    phone: str\nclass VendorInDatabase(VendorCreate):\n    created_at: datetime\n    updated_at: datetime\nclass VendorsResponse(Vendor):\n    created_at: datetime\n    updated_at: datetime\nclass Produce(BaseModel):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "VendorInDatabase",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class VendorInDatabase(VendorCreate):\n    created_at: datetime\n    updated_at: datetime\nclass VendorsResponse(Vendor):\n    created_at: datetime\n    updated_at: datetime\nclass Produce(BaseModel):\n    name: str\n    quantity_kg: float\n    price_per_kg: float",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "VendorsResponse",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class VendorsResponse(Vendor):\n    created_at: datetime\n    updated_at: datetime\nclass Produce(BaseModel):\n    name: str\n    quantity_kg: float\n    price_per_kg: float\n    category: str\nclass ProduceInDb(Produce):\n    id: int",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Produce",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Produce(BaseModel):\n    name: str\n    quantity_kg: float\n    price_per_kg: float\n    category: str\nclass ProduceInDb(Produce):\n    id: int\n    vendor_id: int\n    is_available: bool\n    created_at: datetime",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ProduceInDb",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class ProduceInDb(Produce):\n    id: int\n    vendor_id: int\n    is_available: bool\n    created_at: datetime\n    updated_at: datetime\nclass Order(BaseModel):\n    id: int\n    produce_id: int\n    buyer_name: str",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Order(BaseModel):\n    id: int\n    produce_id: int\n    buyer_name: str\n    buyer_phone: str\n    produce_name: str\n    quantity_kg: float\n    total_price: float\n    delivery_area: str\n    status: str",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "DataBase",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class DataBase:\n    def __init__(self):\n        self.vendors_db: Dict[int, VendorInDatabase] = {}\n        self.produce_db: Dict[int, List[ProduceInDb]] = {}\n        self.orders_db: Dict[int, List[Order]] = {}\n        self.default_vendor_id = 1\n        self.default_produce_id = 1\n        self.default_order_id = 1\n    def increment_vendor_id(self):\n        self.default_vendor_id += 1",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "register_vendors",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def register_vendors(vendor: VendorCreate):\n    if not vendor.name:\n        raise HTTPException(\n            status_code=status.HTTP_400_BAD_REQUEST,\n            detail=\"All fields are required\"\n        )\n    new_vendor = VendorInDatabase(\n        **vendor.model_dump(),\n        created_at=datetime.utcnow(),\n        updated_at=datetime.utcnow()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_all_vendors",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_all_vendors():\n    vendors = database_object.get_all_vendors()\n    return {\n        \"success\": True,\n        \"message\": \"All vendors retrieved successfully\",\n        \"data\": list(vendors.values())\n    }\n@app.get(\"/vendors/{vendor_id}\")\ndef get_vendor_with_produce(vendor_id: int):\n    vendor = database_object.vendors_db.get(vendor_id)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_vendor_with_produce",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_vendor_with_produce(vendor_id: int):\n    vendor = database_object.vendors_db.get(vendor_id)\n    if not vendor:\n        raise HTTPException(status_code=404, detail=\"Vendor not found\")\n    produce = database_object.produce_db.get(vendor_id, [])\n    return {\n        \"vendor\": vendor,\n        \"produce\": produce\n    }\n@app.post(\"/produce\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "add_produce",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def add_produce(vendor_id: int, produce: Produce):\n    vendor = database_object.vendors_db.get(vendor_id)\n    if not vendor:\n        raise HTTPException(status_code=404, detail=\"Vendor not found\")\n    new_produce = ProduceInDb(\n        id=database_object.default_produce_id,\n        vendor_id=vendor_id,\n        is_available=True,\n        created_at=datetime.utcnow(),\n        updated_at=datetime.utcnow(),",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_all_produce",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_all_produce():\n    all_produce = database_object.get_all_produce()\n    return {\n        \"success\": True,\n        \"message\": \"All available produce retrieved successfully\",\n        \"total_produce\": len(all_produce),\n        \"data\": all_produce\n    }\n@app.get(\"/produce/{produce_id}\")\ndef get_produce_by_id(produce_id: int):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_produce_by_id",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_produce_by_id(produce_id: int):\n    for vendor_produce in database_object.produce_db.values():\n        for produce in vendor_produce:\n            if produce.id == produce_id:\n                return {\n                    \"success\": True,\n                    \"message\": \"Produce retrieved successfully\",\n                    \"data\": produce\n                }\n    raise HTTPException(status_code=404, detail=\"Produce not found\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\nclass Vendor(BaseModel):\n    name: str\nclass VendorCreate(Vendor):\n    market_location: str\n    phone: str\nclass VendorInDatabase(VendorCreate):\n    created_at: datetime\n    updated_at: datetime\nclass VendorsResponse(Vendor):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "database_object",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "database_object = DataBase()\n@app.post(\"/vendors\")\ndef register_vendors(vendor: VendorCreate):\n    if not vendor.name:\n        raise HTTPException(\n            status_code=status.HTTP_400_BAD_REQUEST,\n            detail=\"All fields are required\"\n        )\n    new_vendor = VendorInDatabase(\n        **vendor.model_dump(),",
+        "detail": "main",
+        "documentation": {}
+    }
+]
