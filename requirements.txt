@@ -1,3 +1,13 @@
 fastapi
-uvicorn
+uvicorn[standard]
+SQLAlchemy
+alembic
+psycopg2-binary
+python-jose
+passlib[bcrypt]
 pydantic
+python-dotenv
+pytest
+httpx
+python-multipart
+python-slugify

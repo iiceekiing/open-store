@@ -2,7 +2,7 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from datetime import datetime
-from typing import List, Dict, Optional
+from typing import List, Dict
 
 app = FastAPI()
 
